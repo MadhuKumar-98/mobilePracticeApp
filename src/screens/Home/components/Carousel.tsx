@@ -1,7 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Dimensions, FlatList, Image, Text, View } from "react-native";
+import { Dimensions, FlatList, Image, Text, View, ImageSourcePropType } from "react-native";
+interface CarouselItem {
+  id: number;
+  image: ImageSourcePropType;
+}
+interface ScrollEvent {
+  nativeEvent: {
+    contentOffset: {
+      x: number;
+    };
+  };
+}
 
-const carouselData = [
+const carouselData: CarouselItem[] = [
   {
     id: 1,
     image: require("../../../assets/images/banner.png"),
@@ -23,29 +34,31 @@ const carouselData = [
 const Carousel = () => {
   const screenWidth = Dimensions.get("screen").width - 32;
   const [activeIndex, setActiveIndex] = useState(0);
-  const flatlistref = useRef<FlatList>();
+  const flatlistref = useRef<FlatList<CarouselItem> | null>(null);
 
   useEffect(() => {
     let interval = setInterval(() => {
-      if (activeIndex === carouselData.length - 1) {
-        flatlistref.current.scrollToIndex({
-          index: 0,
-          animation: true,
-        });
-        // setActiveIndex(0);
-      } else {
-        flatlistref.current.scrollToIndex({
-          index: activeIndex + 1,
-          animation: true,
-        });
-        // setActiveIndex((prevIndex) => prevIndex + 1);
+      if (flatlistref.current) {
+        if (activeIndex === carouselData.length - 1) {
+          // setActiveIndex(0);
+          flatlistref.current.scrollToIndex({
+            index: 0,
+            animated: true,
+          });
+        } else {
+          // setActiveIndex(activeIndex + 1);
+          flatlistref.current.scrollToIndex({
+            index: activeIndex + 1,
+            animated: true,
+          });
+        }
       }
     }, 2000);
 
     return () => clearInterval(interval);
   }, [activeIndex]);
 
-  const getItemLayout = (_, index) => {
+  const getItemLayout = (_: any, index: number) => {
     // console.log("getItemLayout", index, data);
     return {
       length: screenWidth,
@@ -54,7 +67,7 @@ const Carousel = () => {
     };
   };
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: CarouselItem }) => {
     return (
       <View>
         <Image source={item.image} style={{ width: screenWidth, height: 170, borderRadius: 10 }} />
@@ -62,20 +75,14 @@ const Carousel = () => {
     );
   };
 
-  const handleScroll = (event) => {
+  const handleScroll = (event: ScrollEvent) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
-    // console.log("scrollPosition", Math.floor(scrollPosition));
-    // console.log("screenWidth", Math.floor(screenWidth));
-
     const index = Math.floor(scrollPosition) / Math.floor(screenWidth);
     setActiveIndex(Math.floor(index));
   };
 
-  // console.log("activeIndex", activeIndex);
-
   return (
     <View>
-      {/* <Text className="mb-3 text-lg font-rubik500">Carousel</Text> */}
       <FlatList
         data={carouselData}
         renderItem={renderItem}
@@ -89,11 +96,14 @@ const Carousel = () => {
       />
       <View className="flex-row justify-center items-center mt-3">
         {carouselData.map((_, index) => {
-          if (activeIndex === index) {
-            return <View key={index} className="bg-[#2B8761] h-[10] w-[20] rounded mx-1"></View>;
-          } else {
-            return <View key={index} className="bg-[#c4ddd2] h-[10] w-[10] rounded mx-1"></View>;
-          }
+          return (
+            <View
+              key={index}
+              className={`${
+                activeIndex === index ? "bg-[#2B8761] w-[20]" : "bg-[#c4ddd2] w-[10]"
+              } h-[10] rounded mx-1`}
+            ></View>
+          );
         })}
       </View>
     </View>

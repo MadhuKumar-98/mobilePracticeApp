@@ -8,6 +8,8 @@ import ForgotPassword from "./src/screens/ForgetPassword";
 import VerifyAccount from "./src/screens/VerifyAccount";
 import Items from "./src/screens/Items";
 import { useFonts } from "expo-font";
+import firebase from "@react-native-firebase/app";
+import GeneratePDF from "./src/screens/GeneratePdf";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,19 +22,34 @@ function App() {
     Rubik_700: require("./src/assets/fonts/Rubik-Bold.ttf"),
   });
 
+  const firebaseConfig = {
+    apiKey: "AIzaSyCzBPVkLQXZLd3kACTAdT3SjuZOsKAbEzc",
+    projectId: "fir-storage-f513a",
+    storageBucket: "fir-storage-f513a.firebasestorage.app",
+    messagingSenderId: "438822709273",
+    appId: "1:438822709273:android:aacef93169311788d0e288",
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  } else {
+    firebase.app();
+  }
+
   if (!error && !loaded) {
     return null;
   }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="GeneratePdf" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="VerifyAccount" component={VerifyAccount} />
         <Stack.Screen name="Items" component={Items} />
+        <Stack.Screen name="GeneratePdf" component={GeneratePDF} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,7 +2,7 @@ import { View, Text, TextInput, Pressable } from "react-native";
 import React from "react";
 import { LeftArrow } from "@/src/assets/svg";
 
-const Register = ({ navigation }) => {
+const Register = ({ navigation }:any) => {
   const handleGoBack = () => {
     navigation.goBack();
   };
