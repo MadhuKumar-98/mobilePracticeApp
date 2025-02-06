@@ -10,6 +10,7 @@ import Items from "./src/screens/Items";
 import { useFonts } from "expo-font";
 import firebase from "@react-native-firebase/app";
 import GeneratePDF from "./src/screens/GeneratePdf";
+import NativeLocalStorageScreen from "./src/screens/NativeLocalStorageScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,7 +43,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="GeneratePdf" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="NativeLocalStorageScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
@@ -50,6 +51,7 @@ function App() {
         <Stack.Screen name="VerifyAccount" component={VerifyAccount} />
         <Stack.Screen name="Items" component={Items} />
         <Stack.Screen name="GeneratePdf" component={GeneratePDF} />
+        <Stack.Screen name="NativeLocalStorageScreen" component={NativeLocalStorageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

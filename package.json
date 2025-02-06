@@ -13,6 +13,14 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "codegenConfig": {
+    "name": "NativeLocalStorageSpec",
+    "type": "modules",
+    "jsSrcsDir": "specs",
+    "android": {
+      "javaPackageName": "com.nativelocalstorage"
+    }
+  },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@react-native-firebase/app": "^21.7.1",
