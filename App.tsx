@@ -11,6 +11,7 @@ import { useFonts } from "expo-font";
 import firebase from "@react-native-firebase/app";
 import GeneratePDF from "./src/screens/GeneratePdf";
 import NativeLocalStorageScreen from "./src/screens/NativeLocalStorageScreen";
+import TextToSpeech from "./src/screens/TextToSpeech";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,7 +44,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="NativeLocalStorageScreen" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="TextToSpeech" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
@@ -52,6 +53,7 @@ function App() {
         <Stack.Screen name="Items" component={Items} />
         <Stack.Screen name="GeneratePdf" component={GeneratePDF} />
         <Stack.Screen name="NativeLocalStorageScreen" component={NativeLocalStorageScreen} />
+        <Stack.Screen name="TextToSpeech" component={TextToSpeech} />
       </Stack.Navigator>
     </NavigationContainer>
   );
