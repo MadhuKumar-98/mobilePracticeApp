@@ -8,10 +8,11 @@ import ForgotPassword from "./src/screens/ForgetPassword";
 import VerifyAccount from "./src/screens/VerifyAccount";
 import Items from "./src/screens/Items";
 import { useFonts } from "expo-font";
-import firebase from "@react-native-firebase/app";
+import { initializeApp, getApp, getApps } from "@react-native-firebase/app";
 import GeneratePDF from "./src/screens/GeneratePdf";
 import NativeLocalStorageScreen from "./src/screens/NativeLocalStorageScreen";
 import TextToSpeech from "./src/screens/TextToSpeech";
+import TooltipTestScreen from "./src/screens/VerifyAccount/ToolTip";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,10 +33,10 @@ function App() {
     appId: "1:438822709273:android:aacef93169311788d0e288",
   };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
+  if (!getApps().length) {
+    initializeApp(firebaseConfig);
   } else {
-    firebase.app();
+    getApp(); 
   }
 
   if (!error && !loaded) {
@@ -44,7 +45,7 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TextToSpeech" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="TooltipTestScreen" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
@@ -54,6 +55,7 @@ function App() {
         <Stack.Screen name="GeneratePdf" component={GeneratePDF} />
         <Stack.Screen name="NativeLocalStorageScreen" component={NativeLocalStorageScreen} />
         <Stack.Screen name="TextToSpeech" component={TextToSpeech} />
+        <Stack.Screen name="TooltipTestScreen" component={TooltipTestScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
