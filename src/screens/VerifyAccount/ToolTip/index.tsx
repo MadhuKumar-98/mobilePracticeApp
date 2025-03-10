@@ -13,7 +13,7 @@ const TooltipTestScreen = () => {
         useInteractionManager={true}
         content={
           <View>
-            <Text>Top Title Textmdlkmvclkcxm lcx lcxl </Text>
+            <Text>Top Title Text </Text>
           </View>
         }
         // contentStyle={{ backgroundColor: "red" , padding: 10, borderRadius: 10, width: 100, height: 100 , justifyContent: "center", alignItems: "center" }}
