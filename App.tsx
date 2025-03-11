@@ -13,6 +13,7 @@ import GeneratePDF from "./src/screens/GeneratePdf";
 import NativeLocalStorageScreen from "./src/screens/NativeLocalStorageScreen";
 import TextToSpeech from "./src/screens/TextToSpeech";
 import TooltipTestScreen from "./src/screens/VerifyAccount/ToolTip";
+import Constants from "expo-constants";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,8 @@ function App() {
   if (!error && !loaded) {
     return null;
   }
+
+  console.log('Constants:', Constants.expoConfig?.extra);
 
   return (
     <NavigationContainer>
