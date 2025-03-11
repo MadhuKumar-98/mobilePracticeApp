@@ -1,0 +1,55 @@
+export default {
+  expo: {
+    name: "MobileApp",
+    slug: "MobileApp",
+    version: "1.0.0",
+    owner: "madhukumarpatel",
+    orientation: "portrait",
+    icon: "./src/assets/images/icon.png",
+    scheme: "myapp",
+    userInterfaceStyle: "automatic",
+    splash: {
+      image: "./src/assets/images/splash.png",
+      resizeMode: "contain",
+      backgroundColor: "#ffffff",
+    },
+    jsEngine: "hermes",
+    ios: {
+      supportsTablet: true,
+      bundleIdentifier: "com.madhukumarpatel.MobileApp",
+      infoPlist: {
+        ITSAppUsesNonExemptEncryption: false,
+      },
+    },
+    android: {
+      adaptiveIcon: {
+        foregroundImage: "./src/assets/images/adaptive-icon.png",
+        backgroundColor: "#ffffff",
+      },
+      googleServicesFile: "./android/app/google-services.json",
+      package: "com.madhukumarpatel.MobileApp",
+    },
+    web: {
+      bundler: "metro",
+      output: "static",
+      favicon: "./src/assets/images/favicon.png",
+    },
+    plugins: [
+      "expo-router",
+      "expo-font",
+    ],
+    experiments: {
+      typedRoutes: true,
+    },
+    extra: {
+      router: {
+        origin: false,
+      },
+      eas: {
+        projectId: "e3332822-ee18-4b3e-a403-12428fec0f79",
+      },
+      BASE:process.env.BASE_URL,
+      APP_ENV:process.env.APP_ENV,
+    },
+  },
+};

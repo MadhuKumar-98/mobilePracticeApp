@@ -18,12 +18,14 @@
     "production": {
       "android": {
         "buildType": "app-bundle"
-      }
+      },
+      "autoIncrement": true
     },
     "preview": {
       "android": {
         "buildType": "apk"
-      }
+      },
+      "autoIncrement": true
     },
     "simulator": {
       "ios": {

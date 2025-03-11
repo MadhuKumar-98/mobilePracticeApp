@@ -3,11 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Tooltip from "react-native-walkthrough-tooltip";
 
 const TooltipTestScreen = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   return (
     <View style={styles.container}>
-        0
-      <Tooltip
+  <Tooltip
         accessible={true}
         isVisible={true}
         useInteractionManager={true}
