@@ -14,6 +14,7 @@ import NativeLocalStorageScreen from "./src/screens/NativeLocalStorageScreen";
 import TextToSpeech from "./src/screens/TextToSpeech";
 import TooltipTestScreen from "./src/screens/VerifyAccount/ToolTip";
 import Constants from "expo-constants";
+import GraphsAndCharts from "./src/screens/GraphsAndCharts";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,18 +38,16 @@ function App() {
   if (!getApps().length) {
     initializeApp(firebaseConfig);
   } else {
-    getApp(); 
+    getApp();
   }
 
   if (!error && !loaded) {
     return null;
   }
 
-  console.log('Constants:', Constants.expoConfig?.extra);
-
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TooltipTestScreen" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="GraphsAndCharts" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
@@ -59,6 +58,7 @@ function App() {
         <Stack.Screen name="NativeLocalStorageScreen" component={NativeLocalStorageScreen} />
         <Stack.Screen name="TextToSpeech" component={TextToSpeech} />
         <Stack.Screen name="TooltipTestScreen" component={TooltipTestScreen} />
+        <Stack.Screen name="GraphsAndCharts" component={GraphsAndCharts} />
       </Stack.Navigator>
     </NavigationContainer>
   );
